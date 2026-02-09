@@ -25,7 +25,7 @@ sequenceDiagram
     participant W as OID4VP Wallet
     
     C -->> S: O-O-B Communication 
-    S ->> C: Additional authentication needed<br/>Task status: TASK_STATE_AUTH_REQUIRED<br/>Message metadata with authorizationRequest object
+    S ->> C: Additional authentication needed<br/>Task status: TASK_STATE_AUTH_REQUIRED<br/>Message response with authorizationRequest object
     C ->> W: OID4VP Wallet invocation
     W ->> V: Requests Authorization Request 
     V ->> W: Authorization Request
