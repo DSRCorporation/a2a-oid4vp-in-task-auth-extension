@@ -1,6 +1,6 @@
 # OID4VP In-Task Authentication Extension
 
-This directory contains the specification for the **OID4VP In-Task Authentication Extension v1** for the Agent2Agent (A2A) protocol.
+This directory contains the specification for the **OID4VP In-Task Authentication Extension** for the Agent2Agent (A2A) protocol.
 
 ## Purpose
 
