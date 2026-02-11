@@ -3,6 +3,7 @@
 - **URI:** `https://github.com/DSRCorporation/a2a-oid4vp-in-task-auth-extension/tree/main/v1`
 - **Type:** Profile Extension / Data-Only Extension
 - **Version:** 1.0.0 (Draft)
+- **Authors**: [Valentine Mazurov](https://github.com/Vanderkast), [Alexander Shenshin](https://github.com/AlexanderShenshin)
 
 ## Abstract
 
@@ -39,7 +40,7 @@ sequenceDiagram
 
 ### Assumptions
 - The distinction between roles in this flow is logical (OID4VP Verifier can be embedded in A2A Server, etc.)
-- OID4VP Wallet invocation is out of scope for this extension, you can find implementation consideration in [corresponding section](#wallet-invocation)
+- OID4VP Wallet invocation is out of scope for this extension, you can find implementation considerations in [corresponding section](#wallet-invocation)
 - Requesting End-User consent from a Wallet is out of scope for this extension
 - Interactions between OID4VP Wallet and OID4VP Verifier are performed according to OID4VP specification and out of scope for this extension
 
@@ -64,14 +65,14 @@ The extension requires `oid4vpVersions` parameter that explicitly specifies OID4
 
 ## Data Structure: Authorization Request
 
-The A2A Authorization Request object is passed from Server Agent to the Client to initiate OID4VP flow, data structure is defined according to Section 5 of [RFC 9101](https://datatracker.ietf.org/doc/rfc9101/).
+The A2A Authorization Request object is passed from Server Agent to the Client to initiate OID4VP flow, data structure is defined according to [Section 5 of OID4VP specification](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-authorization-request).
 It's included in the `metadata` map of a core A2A message structure as a top-level `authorizationRequest` object.
 
-| Field             | Type     | Required                                                         | Description                                                                                                                                                     |
-|:------------------|:---------|:-----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`client_id`**   | `string` | Yes                                                              | OAuth 2.0 client ID. The value MUST match the `request` or `request_uri` client_id                                                                              |
-| **`request_uri`** | `string` | Yes, if `request` is not specified. Otherwise MUST NOT present   | The absolute URI referencing authorization request parameters defined in Section 4 of [RFC 6749 (OAuth 2.0)](https://datatracker.ietf.org/doc/html/rfc6749)     |
-| **`request`**     | `object` | Yes, if `request_uri` is not defined. Otherwise MUST NOT present | The Request Object that contains authorization request parameters defined in Section 4 of [RFC 6749 (OAuth 2.0)](https://datatracker.ietf.org/doc/html/rfc6749) |
+| Field             | Type     | Required                                                         | Description                                                                        |
+|:------------------|:---------|:-----------------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| **`client_id`**   | `string` | Yes                                                              | OAuth 2.0 client ID. The value MUST match the `request` or `request_uri` client_id |
+| **`request_uri`** | `string` | Yes, if `request` is not specified. Otherwise MUST NOT present   | The absolute URI referencing authorization request parameters                      |
+| **`request`**     | `object` | Yes, if `request_uri` is not defined. Otherwise MUST NOT present | The Request Object that contains authorization request parameters                  |
 
 ### Example Authorization Request Payload
 
