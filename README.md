@@ -15,4 +15,6 @@ Suggested integration provides clear protocol boundaries that set minimal restri
 
 The full specification (v1 Draft) can be found [here](./v1/spec.md).
 
-## Sample Implementation - TODO
+## Sample Implementation
+
+A sample implementation of the OID4VP In-Task Authentication Extension can be found [here](./sample).

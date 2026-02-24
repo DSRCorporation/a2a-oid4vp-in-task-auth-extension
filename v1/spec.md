@@ -148,7 +148,7 @@ OID4VP In-Task auth flow and messages based on sample provided in [corresponding
 - A2A Server has built-in capabilities to act as Verifiable Credentials Verifier
 - OID4VP Authorization Request parameters are the same in each context, do not depend on A2A Task data or other external factors
 
-**A2A Client credential payload**:
+A2A Client credential payload:
 ```json
 {
   "vct": "SampleCredential",
@@ -158,8 +158,8 @@ OID4VP In-Task auth flow and messages based on sample provided in [corresponding
 }
 ```
 
-1. A2A Client sends a new Task request to A2A Server
-2. A2A server decides that additional authentication is required -> OOB interaction with OID4VP Verifier -> OID4VP Verifier generates OID4VP Authorization request
+#### 1. A2A Client sends a new Task request to A2A Server
+#### 2. A2A Server decides that additional authentication is required -> OOB interaction with OID4VP Verifier -> OID4VP Verifier generates OID4VP Authorization request
 
 Digital Credentials Query Language (DCQL) query for `SampleCredential` used for OID4VP Authorization Request:
 ```json
@@ -175,7 +175,7 @@ Digital Credentials Query Language (DCQL) query for `SampleCredential` used for 
 }
 ```
 
-3. A2A Server receives OID4VP authorization request from OID4VP Verifier (OOB) and sends `auth-required` response to A2A Client
+#### 3. A2A Server receives OID4VP authorization request from OID4VP Verifier (OOB) and sends `auth-required` response to A2A Client
 
 Example extension metadata included in the response:
 ```json
@@ -189,7 +189,7 @@ Example extension metadata included in the response:
 }
 ```
 
-4. A2A Client receives `auth-required` response and initiates OID4VP Wallet invocation -> OID4VP Wallet creates and sends OID4VP authorization response to OID4VP Verifier
+#### 4. A2A Client receives `auth-required` response and initiates OID4VP Wallet invocation -> OID4VP Wallet creates and sends OID4VP authorization response to OID4VP Verifier
 
 Example OID4VP authorization response:
 ```json
@@ -199,9 +199,8 @@ Example OID4VP authorization response:
       "eyJ0eXAiOiJkYytzZC1qd3QiLCJhbGciOiJFZERTQSIsImtpZCI6IiN6Nk1rcEdSNGdzNFJjM1pwaDR2ajh3Um5qbkF4Z0FQU3hjUjhNQVZLdXRXc3BRemMifQ.eyJ2Y3QiOiJEZW1vQ3JlZGVudGlhbCIsImRlZ3JlZSI6ImJhY2hlbG9yIiwiY25mIjp7ImtpZCI6ImRpZDprZXk6ejZNa3NLeGtmVE1TUFo5b3JrZVZtWGFYYXY5R3BkZjZoNW9zTGVWOWc3a1V2cll3I3o2TWtzS3hrZlRNU1BaOW9ya2VWbVhhWGF2OUdwZGY2aDVvc0xlVjlnN2tVdnJZdyJ9LCJpc3MiOiJkaWQ6a2V5Ono2TWtwR1I0Z3M0UmMzWnBoNHZqOHdSbmpuQXhnQVBTeGNSOE1BVkt1dFdzcFF6YyIsImlhdCI6MTc3MTgxNDUxNywiX3NkIjpbIjdGNmpVd05nOFZvS0RXQ2ROSm1WRThXSG1ULTlZOFhuOElRb1B2bVNoTVEiLCJ4QkQ4VVJfWUdqMkpieEh2Rld6WUQ2enFLZEF4bzVKWjdwTDFlUWtLX1JNIl0sIl9zZF9hbGciOiJzaGEtMjU2In0.32t6v5DdC_olJBe9lXJWXn8FLR0i9xirNDSeL_fK3FA1PIc5WrE2GsDFBxmJHur3EsEch2MPTuaGoXeVjTVRBg~WyJ6LWRELVFld1VvVF9VckpTIiwibmFtZSIsIkpvaG4gRG9lIl0~eyJ0eXAiOiJrYitqd3QiLCJhbGciOiJFZERTQSJ9.eyJpYXQiOjE3NzE4MTQ1MjIsIm5vbmNlIjoib2Vxd01sOENKZTFNdnVDLTBEaWM0SWFfUzBWU2g3ZXA1cUlEQlY5cm5aQSIsImF1ZCI6InJlZGlyZWN0X3VyaTpodHRwOi8vbG9jYWxob3N0OjMwMDEvb2lkNHZwLzU1NjdkMmJkLWIyNzItNGJhMS1iOGMyLWQ2YmUxZTk4ZjZjNC9hdXRob3JpemU_c2Vzc2lvbj0wMzk4MDViNC0zNjg5LTRiMDEtYmZjNC02MjYwOGY4NjY1NzkiLCJzZF9oYXNoIjoiS2cyM01OOUlVcFByYjdOS3dZZm9qUmJVSFg0dU5qbFZBbDM4OWRfUzIyZyJ9.mkskJQqOGXR93GNCyuJaZh5ZaGgjxVumpOcHCqTOSffEIaUUd_SGmSLVrPk-imi_YHgpd7o2StkOqTv90BSaCg"
     ]
   },
-  "presentation_submission": "undefined",
   "state": "Qt0XDdw_dG_lV65trStQ8IRYmwUX_6jgmjGKCMnfnnk"
 }
 ```
 
-5. OID4VP Verifier receives an authorization response, verifies it and approves the execution (OOB interaction with A2A Server)
+#### 5. OID4VP Verifier receives an authorization response, verifies it and approves the execution (OOB interaction with A2A Server)
