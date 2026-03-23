@@ -1,4 +1,4 @@
-# A2A Protocol Extension: OID4VP In-Task Authentication (v1 Draft)
+# A2A Protocol Extension: OID4VP In-Task Authorization (v1 Draft)
 
 - **URI:** `https://github.com/DSRCorporation/a2a-oid4vp-in-task-auth-extension/tree/main/v1`
 - **Type:** Profile Extension / Data-Only Extension
@@ -7,16 +7,16 @@
 
 ## Abstract
 
-This extension provides an option to use [OpenID for Verifiable Presentations (OID4VP) protocol](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) for Agent2Agent (A2A) In-Task Authentication.
+This extension provides an option to use [OpenID for Verifiable Presentations (OID4VP) protocol](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) for Agent2Agent (A2A) In-Task Authorization.
 
-The integration of OID4VP flow allows Server Agents to perform additional authentification by requesting Verifiable Presentations (VPs) from the client.
+The integration of OID4VP flow allows Server Agents to perform additional authorization by requesting Verifiable Presentations (VPs) from the client.
 This mechanism also enables Just-In-Time (JIT) authorization – server can dynamically request information from specific Verifiable Credentials (VCs) during a Task execution without breaking the protocol flow.
 
 It's also worth mentioning that support for OID4VP-based auth is highly relevant for adoption of A2A in ecosystems that use / support trust models based on VCs.
 
-## OID4VP In-Task Authentication Flow
+## OID4VP In-Task Authorization Flow
 
-The diagram below shows a non-normative example of an OID4VP A2A in-task authentication flow:
+The diagram below shows a non-normative example of an OID4VP A2A in-task authorization flow:
 
 ```mermaid
 sequenceDiagram
@@ -26,7 +26,7 @@ sequenceDiagram
     participant W as OID4VP Wallet
     
     C -->> S: O-O-B Communication 
-    S ->> C: Additional authentication needed<br/>Task status: TASK_STATE_AUTH_REQUIRED<br/>Message response with authorizationRequest object
+    S ->> C: Additional authorization needed<br/>Task status: TASK_STATE_AUTH_REQUIRED<br/>Message response with authorizationRequest object
     C ->> W: OID4VP Wallet invocation
     W ->> V: Requests Authorization Request 
     V ->> W: Authorization Request
@@ -35,7 +35,7 @@ sequenceDiagram
     W ->> V: VP
     V ->> V: Verifies VP
     V ->> S: Approves task execution (out-of-band)
-    S ->> C: Additional authentication passed<br/>Task status: TASK_STATE_WORKING<br/>(received via Task subscription or status polling)
+    S ->> C: Additional authorization passed<br/>Task status: TASK_STATE_WORKING<br/>(received via Task subscription or status polling)
 ```
 
 ### Assumptions
@@ -46,7 +46,7 @@ sequenceDiagram
 
 ## Protocol Data Definition
 
-An A2A Agent that supports OID4VP In-Task authentication mechanisms **MUST** declare its support in its `AgentCard` under the **`extensions`** part of the `AgentCapabilities` object.
+An A2A Agent that supports OID4VP In-Task authorization mechanisms **MUST** declare its support in its `AgentCard` under the **`extensions`** part of the `AgentCapabilities` object.
 
 ### Example AgentCard Declaration
 
@@ -55,7 +55,7 @@ The extension requires `oid4vpVersions` parameter that explicitly specifies OID4
 ```json
 {
   "uri": "https://github.com/DSRCorporation/a2a-oid4vp-in-task-auth-extension/tree/main/v1",
-  "description": "Provides an option to use OpenID for Verifiable Presentations (OID4VP) for In-Task Authentication",
+  "description": "Provides an option to use OpenID for Verifiable Presentations (OID4VP) for In-Task Authorization",
   "required": false,
   "params": {
     "oid4vpVersions": ["1.0"]
@@ -93,7 +93,7 @@ It's included in the `metadata` map of a core A2A message structure as a top-lev
       "state": "TASK_STATE_AUTH_REQUIRED",
       "message": {
         "role": "ROLE_AGENT",
-        "parts": [{"text": "Additional authentication is required for this task."}],
+        "parts": [{"text": "Additional authorization is required for this task."}],
         "metadata": {
           "https://github.com/DSRCorporation/a2a-oid4vp-in-task-auth-extension/tree/main/v1": {
             "authorizationRequest": {
@@ -159,7 +159,7 @@ A2A Client credential payload:
 ```
 
 #### 1. A2A Client sends a new Task request to A2A Server
-#### 2. A2A Server decides that additional authentication is required -> OOB interaction with OID4VP Verifier -> OID4VP Verifier generates OID4VP Authorization request
+#### 2. A2A Server decides that additional authorization is required -> OOB interaction with OID4VP Verifier -> OID4VP Verifier generates OID4VP Authorization request
 
 Digital Credentials Query Language (DCQL) query for `SampleCredential` used for OID4VP Authorization Request:
 ```json

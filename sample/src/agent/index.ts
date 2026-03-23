@@ -59,8 +59,7 @@ const SAMPLE_AGENT_CARD: AgentCard = {
     extensions: [
       {
         uri: IN_TASK_OID4VP_EXTENSION_URI,
-        description:
-          'Provides an option to use OpenID for Verifiable Presentations (OID4VP) for In-Task Authentication',
+        description: 'Provides an option to use OpenID for Verifiable Presentations (OID4VP) for In-Task Authorization',
         required: false,
         params: { oid4vpVersions: ['1.0'] },
       } satisfies InTaskOpenId4VpExtension,
